@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-
+import {BrowserRouter , Routes , Route} from 'react-router-dom'
+import Login from './components/login';
+import Menu from './components/nav';
+import { useState } from 'react';
+import Home from './components/home';
+import InsAdd from './components/Ins_add';
 function App() {
+  const [query,OnQuery]=useState("")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+<Routes>
+<Route exact path='/' element={<Login/>} />
+<Route exact path='/home' element={<><Menu OnQuery={OnQuery}/><Home query={query}/></>} />
+<Route exact path='/home/add' element={<><Menu OnQuery={"none"}/><InsAdd/></>} />
+
+</Routes>
+
+</BrowserRouter>
   );
 }
 
