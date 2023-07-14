@@ -1,4 +1,4 @@
-import background from '../background.jpg'
+import background from '../images/background.jpg'
 import '../App.css';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';

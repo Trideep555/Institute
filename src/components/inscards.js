@@ -1,18 +1,12 @@
 import { NewsHeaderCard } from 'react-ui-cards';
 import build from '../images/insti.jpg'
-import plus from '../images/plus.jpg'
-import { NavLink } from 'react-router-dom';
-function Home({query}){
+import { NavLink, useParams } from 'react-router-dom';
+function InsCards({query}){
+   const {id}=useParams();
+   console.log(id);
  return (<>
  <div className="cards">
- <NavLink to="/home/add"><NewsHeaderCard float
-    to='/home/add'
-    thumbnail={plus}
-    title='Add'
-    
-    className='card'
-    /></NavLink>
-  
+
  <NewsHeaderCard
     float
     to='https://github.com/nekonee'
@@ -49,4 +43,4 @@ function Home({query}){
 
  </>)
 }
-export default Home;
+export default InsCards;

@@ -13,20 +13,26 @@ function Menu({OnQuery}){
         setsearch(event.target.value);
         OnQuery(search);
     }
-    const Check = ()=>{
-        if(search!==""){
-            setsearch("");
-            OnQuery(search);
-                
-        }
-    }
+   
     return (<>
      <Navbar expand="lg" sticky="top" className="nav">
       <Container fluid>
       <NavLink to="/home" style={{textDecoration:"none"}}><Navbar.Brand to="/" className='col'>DeksBox</Navbar.Brand></NavLink>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+            
+                          <Navbar.Toggle aria-controls="navbarScroll" className='togg' />
+                <Dropdown className="d-flex justify-content-end mr-2 acc" autoClose="inside">
+        <Dropdown.Toggle id="dropdown-autoclose-inside user">
+        <i class="fa-solid fa-user"></i>
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu style={{left:'auto',right:'0'}}>
+          <Dropdown.Item href="#"><i className="fa-solid fa-right-from-bracket color"></i>&nbsp;Logout</Dropdown.Item>
+          
+        </Dropdown.Menu>
+      </Dropdown>
+      <Navbar.Collapse id="navbarScroll">
         <Nav className="justify-content-end flex-grow-1 pe-3">
+          
                   {/*<Nav.Link href="#action1" className='link'>Home</Nav.Link>
                   <Nav.Link href="#action2" className='link'>Link</Nav.Link>
                   <NavDropdown
@@ -45,28 +51,19 @@ function Menu({OnQuery}){
     </Nav> 
                {OnQuery!=="none"? <Form className="d-flex">
                   <Form.Control
-                    type="text"
+                    type="search"
                     placeholder="Search"
-                    className="me-2"
+                    className="me-2 check"
                     aria-label="Search"
                     value={search}
                     onChange={Change}
                     style={{borderRadius:"20px"}}
                   />
-                  <i className={search===""?"fa-solid fa-magnifying-glass glass":"fa-solid fa-x glass"} onClick={Check}></i>
-                </Form> : ""}
-                <Dropdown className="d-inline mr-2" style={{border:"none"}} autoClose="inside">
-        <Dropdown.Toggle id="dropdown-autoclose-inside user">
-        <i class="fa-solid fa-user"></i>
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu style={{left:'auto',right:'0'}}>
-          <Dropdown.Item href="#"><i class="fa-solid fa-right-from-bracket color"></i>&nbsp;Logout</Dropdown.Item>
-          
-        </Dropdown.Menu>
-      </Dropdown>
+                  </Form> : ""}
+                
                 </Navbar.Collapse>
-         
+                
+
       </Container>
     </Navbar>
     </>)
