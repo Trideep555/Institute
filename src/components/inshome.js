@@ -4,22 +4,24 @@ import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 function Ins_Home(){
   const [val,setval]=useState(0);
+  const location=useLocation();
+  
   useEffect(() => {
-    if(window.location.pathname==="/inshome/config")
-  {
-    setval(2)
-  }
-  else if(window.location.pathname==="/inshome/teacher_byclass" ||  window.location.pathname==="/inshome/teacher_bysub")
-  {
-    setval(1)
-  }
+    if(location.pathname.includes("/inshome/config"))
+    {
+      setval(2)
+    }
+    else if(location.pathname==="/inshome/teacher_byclass" ||  location.pathname==="/inshome/teacher_bysub")
+    {
+      setval(1)
+    }
   else
   setval(0)
-  },[window.location.pathname]);
+  },[location]);
   
   const navigate=useNavigate();
   

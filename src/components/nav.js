@@ -1,23 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Menu({OnQuery}){
     const [search,setsearch]=useState("");
-    const Change= (event)=>{
-        setsearch(event.target.value);
-        OnQuery(search);
+    const Change= ()=>{
+        try {
+          OnQuery(search);
+        }
+        catch(e){
+          console.log(e);
+        }
     }
+    const navigate=useNavigate();
+    const LogOut= () => {
+      localStorage.clear();
+      navigate("/")
+    }
+    useEffect(() =>{
+      Change();
+    },[search])
    
     return (<>
      <Navbar expand="lg" sticky="top" className="nav">
       <Container fluid>
-      <NavLink to="/home" style={{textDecoration:"none"}}><Navbar.Brand to="/" className='col'>DeksBox</Navbar.Brand></NavLink>
+      <NavLink to={localStorage.getItem("role")=="Superadmin"?"/home":"/inshome"} style={{textDecoration:"none"}}><Navbar.Brand to="/" className='col'>DeksBox</Navbar.Brand></NavLink>
             
                           <Navbar.Toggle aria-controls="navbarScroll" className='togg' />
                 <Dropdown className="d-flex justify-content-end mr-2 acc" autoClose="inside">
@@ -26,7 +38,7 @@ function Menu({OnQuery}){
         </Dropdown.Toggle>
 
         <Dropdown.Menu style={{left:'auto',right:'0'}}>
-          <Dropdown.Item href="#"><i className="fa-solid fa-right-from-bracket color"></i>&nbsp;Logout</Dropdown.Item>
+          <Dropdown.Item href="#" onClick={LogOut}><i className="fa-solid fa-right-from-bracket color"></i>&nbsp;Logout</Dropdown.Item>
           
         </Dropdown.Menu>
       </Dropdown>
@@ -56,7 +68,7 @@ function Menu({OnQuery}){
                     className="me-2 check"
                     aria-label="Search"
                     value={search}
-                    onChange={Change}
+                    onChange={(event) => setsearch(event.target.value)}
                     style={{borderRadius:"20px"}}
                   />
                   </Form> : ""}

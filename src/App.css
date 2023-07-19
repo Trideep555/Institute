@@ -23,7 +23,7 @@ transform: translate(-50%, -50%);
 }
 .login-div{
   display: flex;
-  height: 73vh;
+  height: 78vh;
   flex-direction: column;
   width: min(80vw,550px);
   gap: 50px;
@@ -133,7 +133,6 @@ transform: translate(-50%, -50%);
 }
 .unactive{
   opacity: 0.5;
-  cursor: not-allowed;
 }
 .btn-primary{
   background-color: #8C4891 !important;
@@ -225,7 +224,9 @@ transform: translate(-50%, -50%);
   .ps-menu-label{
     color:#8C4891 !important;
   }
-  
+  .navbar>.container{
+    justify-content: center !important;
+  }
 @media screen and (min-width: 320px) and (max-width: 375px) {
   .login-div{
     height: 85vh;
@@ -234,6 +235,9 @@ transform: translate(-50%, -50%);
   }
   .togg{
     right: 25vw;
+  }
+  .nav-link{
+    font-size: 4vw !important;
   }
  
 }
@@ -261,7 +265,7 @@ transform: translate(-50%, -50%);
 }
 @media screen and (min-width: 768px) and (max-width: 1000px) {
   .login-div{
-    height: 85vh;
+    height: 89vh;
     width: 95vw;
   }
   
